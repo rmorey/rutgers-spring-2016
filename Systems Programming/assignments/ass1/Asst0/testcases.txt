@@ -1,0 +1,90 @@
+-------------- CASE 1 -----------------
+input: "arr[ddd]/*kjsd jkds sdijv32983298*/ +=+>>+<<?!"
+output:
+    word: "arr"
+    open-bracket: "["
+    word: "ddd"
+    close-bracket: "]"
+    block-comment: "/*kjsd jkds sdijv32983298*/"
+    plus-equals: "+="
+    plus-perator: "+"
+    right bit-shift: ">>"
+    plus-perator: "+"
+    left-bit-shift: "<<"
+    question-mark: "?"
+    negate: "!"
+
+-------------- CASE 2 -----------------
+input: "0.548 0.4e8 0.23E+92 0.54e-23"                                                                                                             
+output:
+    float: "0.548"
+    float: "0.4e8"
+    float: "0.23E+92"
+    float: "0.54e-23"
+
+
+-------------- CASE 3 -----------------
+input: "0135797531;0xABE123"
+output:
+    octal: "01357"
+    decimal: "97531"
+    semi-colon: ";"
+    hexidecimal: "0xABE123"
+
+-------------- CASE 4 -----------------
+input: "The@sign is noot valid"
+output:
+    word: "The"
+    word: "@sign"
+    word: "is"
+    word: "noot"
+    word: "valid"
+
+-------------- CASE 5 -----------------
+input: "1.23 5e65 6.2E+3 5.52e-76"
+output:
+    float: "1.23"
+    decimal: "5"
+    word: "e65"
+    float: "6.2E+3"
+    float: "5.52e-76"
+
+--------------- CASE 6 ----------------
+input: "raggle-fragglevim testcases.txt ! @@rghhh <<=?<<|%="
+output:
+    word: "raggle"
+    minus-operator: "-"
+    word: "fragglevim"
+    word: "testcases"
+    dot-operator: "."
+    word: "txt"
+    negate: "!"
+    mal: "@"
+    mal: "@"
+    word: "rghhh"
+    left-bit-shift-equals: "<<="
+    question-mark: "?"
+    left-bit-shift: "<<"
+    bitwise-OR: "|"
+    modulus-equals: "%="
+
+--------------- CASE 7 ----------------
+input: "@@##kdssdkm-++wooordks93845o0.2e[]{}\\//"
+output:
+    mal: "@"
+    mal: "@"
+    mal: "#"
+    mal: "#"
+    word: "kdssdkm"
+    minus-operator: "-"
+    double-plus: "++"
+    word: "wooordks93845o0"
+    dot-operator: "."
+    decimal: "2"
+    word: "e"
+    open-bracket: "["
+    close-bracket: "]"
+    cpen-curly-brace: "{"
+    close-curly-brace: "}"
+    mal: "\"
+    inline-comment: "//"
