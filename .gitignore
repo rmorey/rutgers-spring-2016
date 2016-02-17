@@ -1,2 +1,8 @@
 #books to large for repo
 books/
+
+#racket for scheme stuff
+racket/
+
+#lecture slides
+lecture\ slides/
