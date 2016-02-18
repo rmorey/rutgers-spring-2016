@@ -1,0 +1,6 @@
+destroy nodes when theyre deleted? (probably yes)
+
+what if they delete the current item in the iterator ( we cant get to the next one ):
+- we give each node an int place
+- place = one less than the node they get put behind
+- this way if the current list has nodes with places values equaling: 1 2 3 4 5 and the iterator just returned 3, then the iterator looks for 4 on the next call to getNext, this way if 3 gets deleted we are still fine. One issue with this is if they insert elements which are less than 4 but greater than 3 then they will not be returned when GetNext is called because they will have a value of 3.

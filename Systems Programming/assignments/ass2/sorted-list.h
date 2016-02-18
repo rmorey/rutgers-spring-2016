@@ -6,13 +6,6 @@
 
 #include <stdlib.h>
 
-// Debug Macros 
-#define debugc(x) printf(#x " is: %c\n", x)
-#define debugs(x) printf(#x " is: %s\n", x)
-#define debugi(x) printf(#x " is: %d\n", x)
-#define debugf(x) printf(#x " is: %f\n", x)
-
-
 //======Prototypes for User-Defined Functions==========
 //-=-=-=-You do not need to do anything with these definitions-=-=-=-
 
@@ -24,7 +17,7 @@
  * that knows how to compare the data being sorted, but your code must do the rest
  * of the bookkeeping in a generic manner.
  *
- * The comparator function will take pointers to two data items and will return -1 if the 1st 
+ * The comparator function will take pointers to two data items and will return -1 if the 1st
  * is smaller, 0 if the two are equal, and 1 if the 2nd is smaller.
  *
  * The user will also supply a destruct function will take a pointer to a single data item
@@ -46,10 +39,25 @@ typedef void (*DestructFuncT)( void * );
 //===0.1: List Definition, List Create/Destroy
 
 /*
+ * <explanation goes here>
+ */
+struct Node
+{
+    void *data;
+    struct Node *next;
+    int iterators;
+    int deleted;
+};
+typedef struct Node Node;
+
+/*
  * Sorted list type that will hold all the data to be sorted.
  */
 struct SortedList
 {
+    CompareFuncT compare;
+    DestructFuncT destroy;
+    Node *list;
 };
 typedef struct SortedList* SortedListPtr;
 
@@ -61,7 +69,7 @@ typedef struct SortedList* SortedListPtr;
  *   Both the comparator and destructor functions will be defined by the user as per
  *     the prototypes above.
  *   Both functions must be stored in the SortedList struct.
- * 
+ *
  * SLCreate must return NULL if it does not succeed, and a non-NULL SortedListPtr
  *   on success.
  */
@@ -74,14 +82,12 @@ SortedListPtr SLCreate(CompareFuncT cf, DestructFuncT df);
  */
 void SLDestroy(SortedListPtr list);
 
-
-
 //===0.2: List Insert/Remove
 
 /*
  * SLInsert inserts a given data item 'newObj' into a SortedList while maintaining the
  *   order and uniqueness of list items.
- * 
+ *
  * SLInsert should return 1 if 'newObj' is not equal to any other items in the list and
  *   was successfully inserted.
  * SLInsert should return 0 if 'newObj' is equal to an item already in the list or it was
@@ -112,7 +118,7 @@ int SLRemove(SortedListPtr list, void *newObj);
 /*
  * SortListIterator allows a SortedList to be easily 'walked' through,
  *  item by item using repeated calls to 'SLNextItem'.
- * Each 'SLNextItem' call to a SortedListIterator should result in the 
+ * Each 'SLNextItem' call to a SortedListIterator should result in the
  *  next consecutive item in a SortedList, from the beginning to the end.
  * A SortedListIterator provides a one-way traversal through all of a SortedList
  */
@@ -177,7 +183,5 @@ void * SLNextItem(SortedListIteratorPtr iter);
  */
 
 void * SLGetItem( SortedListIteratorPtr iter );
-
-
 
 #endif
