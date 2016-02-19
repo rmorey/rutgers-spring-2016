@@ -5,6 +5,7 @@
  */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 //======Prototypes for User-Defined Functions==========
 //-=-=-=-You do not need to do anything with these definitions-=-=-=-
@@ -30,8 +31,6 @@
 
 typedef int (*CompareFuncT)( void *, void * );
 typedef void (*DestructFuncT)( void * );
-
-
 
 //-=-=-=-You must implement all the functions and definitions below-=-=-=-
 
@@ -60,6 +59,7 @@ struct SortedList
     Node *list;
 };
 typedef struct SortedList* SortedListPtr;
+typedef struct SortedList SortedList;
 
 
 /*
@@ -124,9 +124,12 @@ int SLRemove(SortedListPtr list, void *newObj);
  */
 struct SortedListIterator
 {
+    Node *currentItem;
+    SortedListPtr slp;
+    int finished;
 };
 typedef struct SortedListIterator* SortedListIteratorPtr;
-
+typedef struct SortedListIterator SortedListIterator;
 
 /*
  * SLCreateIterator creates a SortedListIterator for the SortedList pointed to by 'list'.
