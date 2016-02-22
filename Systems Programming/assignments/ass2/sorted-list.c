@@ -32,7 +32,7 @@ void SLDestroy(SortedListPtr list)
 int SLInsert(SortedListPtr list, void *newObj)
 {
     // Create Node with new data object
-    Node *new = malloc(sizeof(Node));
+    Node *new = (Node*) malloc(sizeof(Node));
     new->data = newObj;
     new->next = NULL;
     new->iterators = 0;
@@ -48,7 +48,7 @@ int SLInsert(SortedListPtr list, void *newObj)
 
     Node *ptr = list->list;
     Node *prev = NULL;
-    while((ptr) && list->compare(newObj, ptr->data) == -1)
+    while((ptr) && (list->compare(new->data, ptr->data) == -1))
     {
         prev = ptr;
         ptr = ptr->next;
@@ -58,19 +58,19 @@ int SLInsert(SortedListPtr list, void *newObj)
     {
         prev->next = new;
     }
-    else if(!prev) // insert at front of list
-    {
-        new->ptr;
-        list->list = new;
-    }
-    else if(list->compare(newObj, ptr->data) == 0) // found duplicate
+    else if(list->compare(new->data, ptr->data) == 0) // found duplicate, dont insert
     {
         list->destroy(new->data);
         free(new);
 
         return 0;
     }
-    else
+    else if(!prev) // insert at front of list
+    {
+        new->next = ptr;
+        list->list = new;
+    }
+    else // insert somewhere in the middle
     {
         new->next = ptr;
         prev->next = new;
@@ -81,8 +81,8 @@ int SLInsert(SortedListPtr list, void *newObj)
 
 int SLRemove(SortedListPtr list, void *newObj)
 {
-    Node* prev;
-    Node* ptr;
+    Node *prev = NULL;
+    Node *ptr = list->list;
     while((ptr) && (list->compare(ptr->data, newObj) != 0))
     {
         prev = ptr;
@@ -121,7 +121,7 @@ int SLRemove(SortedListPtr list, void *newObj)
             ptr->deleted = 1;
         }
     }
-    else
+    else // target is somewhere in the middle
     {
         prev->next = ptr->next;
 
@@ -140,19 +140,19 @@ int SLRemove(SortedListPtr list, void *newObj)
 }
 
 
-/************************* SortedListIterator ***********************/
+/*************************    SortedListIterator Methods   ***********************/
 SortedListIteratorPtr SLCreateIterator(SortedListPtr list)
 {
-    SortedListIteratorPtr slip = (SortedListIteratorPtr*) malloc(sizeof(SortedListIterator));
+    SortedListIteratorPtr slip = (SortedListIteratorPtr) malloc(sizeof(SortedListIterator));
     slip->currentItem = NULL;
     slip->finished = 0;
     slip->slp = list;
 
-    if(!list) // sorted list is empty so we cant make an iterator
+    if(!list) // sorted list is empty so we wont make an iterator
     {
         free(slip);
 
-        return NULL:
+        return NULL;
     }
 
     return slip;
@@ -160,6 +160,14 @@ SortedListIteratorPtr SLCreateIterator(SortedListPtr list)
 
 void SLDestroyIterator(SortedListIteratorPtr iter)
 {
+    // node was already removed from list and all iterators have left it
+    if( (iter->currentItem) && (iter->currentItem->deleted) && (--(iter->currentItem->iterators) == 0) )
+    {
+        iter->slp->destroy(iter->currentItem->data);
+        free(iter->currentItem);
+        free(iter);
+    }
+
     free(iter);
 
     return;
@@ -176,6 +184,7 @@ void* SLNextItem(SortedListIteratorPtr iter)
     {
             if(!iter->slp->list) //empty list
             {
+
                 iter->finished = 1;
                 return NULL;
             }
@@ -183,18 +192,18 @@ void* SLNextItem(SortedListIteratorPtr iter)
             {
                 iter->currentItem = iter->slp->list;
                 iter->currentItem->iterators++;
-                return iter->currentItem;
+
+                return iter->currentItem->data;
             }
     }
 
     // find next item to be returned
     Node *temp = iter->currentItem;
-    while((iter->currentItem) && (iter->currentItem->deleted)) // also skip over nodes which should be deleted
-    {
+    do{
         iter->currentItem = iter->currentItem->next;
-    }
+    }while((iter->currentItem) && (iter->currentItem->deleted)); // also skip over nodes which should be deleted
 
-    if(--(temp->iterators) == 0 && (temp->deleted)) // this node should be deleted and all iterators have left it
+    if((--(temp->iterators) == 0) && (temp->deleted)) // this node should be deleted and all iterators have left it
     {
         iter->slp->destroy(temp->data);
         free(temp);
@@ -208,10 +217,10 @@ void* SLNextItem(SortedListIteratorPtr iter)
 
     (iter->currentItem->iterators)++;
 
-    return iter->currentItem;
+    return iter->currentItem->data;
 }
 
 void* SLGetItem(SortedListIteratorPtr iter)
 {
-    return iter->currentItem;
+    return (void*) iter->currentItem->data;
 }
