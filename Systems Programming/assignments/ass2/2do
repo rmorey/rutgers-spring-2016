@@ -1,2 +1,0 @@
-we use valgrind to check for proper destruction of data
-note that dumb iterator issue

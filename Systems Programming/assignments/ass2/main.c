@@ -1,5 +1,5 @@
 /*
- * Authors: Olaolu Emmanuel and Jordan Lyon
+ * Authors: Olaolu Emmanuel && Jordan Lyon
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -176,32 +176,3 @@ int main(int argc, char* argv[])
 
     return EXIT_SUCCESS;
 }
-
-/* Other Debug Methods
-void printList(SortedListPtr sl)
-{
-    Node *ptr = sl->list;
-
-    printf( (ptr) ? "List contents:\n" : "The list is empty" );
-
-    while(ptr)
-    {
-        char *i = (char*) ptr->data;
-        printf("DATA ADDRESS: %s\tNEXT ADDRESS: %p\n", i, ptr->next);
-
-        ptr = ptr->next;
-    }
-}
-
-void printNode(Node* ptr)
-{
-    printf( (ptr) ? "List contents:\n" : "The list is empty" );
-
-    while(ptr)
-    {
-        char *i = (char*) ptr->data;
-        printf("DATA: %s\tNEXT ADDRESS: %p\n", i, ptr->next);
-
-        ptr = ptr->next;
-    }
-} */

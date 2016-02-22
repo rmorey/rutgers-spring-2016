@@ -1,0 +1,28 @@
+/*
+ * Authors: Olaolu Emmanuel && Jordan Lyon
+ */
+
+
+STRING TESTING
+-----------------------------------------------------------
+DATA (In Order): "riggityrow", "jazzyjeff", "barrel", "apples" 
+
+- we added the data in the order 3-4-2-1 to test inserting to the begginning and end
+- we deleted the node that the iterator would return as the next to see if the iterator would adjust and it did.
+- we used getItem multiple times and recieved the most recent item return from NextItem()
+
+
+STRUCT TESTING
+-----------------------------------------------------------
+DATA (In Order): (23, 98), (30, 30), (1, 7), (3, 2)
+
+- we added the data in such an order to test inserting to the end and middle of the list
+- we had one iterator at 1 and 1 at 3
+- we deleted nodes 2 and 4 and the iterator on one returned 3 as the next as opposed to 2
+- the iterator on 3 return null since the list had been shortened
+
+
+NOTE:
+-----------------------------------------------------------
+To test any destruction functions, we used valgrind to check for any
+memory leaks of which there were none

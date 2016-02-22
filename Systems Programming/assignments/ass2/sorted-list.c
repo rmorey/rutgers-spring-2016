@@ -13,7 +13,7 @@ SortedListPtr SLCreate(CompareFuncT compare, DestructFuncT destroy)
 
 void SLDestroy(SortedListPtr list)
 {
-    // free list
+    // free list of data
     Node *ptr = list->list;
     while(ptr)
     {
