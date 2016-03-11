@@ -74,7 +74,7 @@ void desString(void* a)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char* argv[])
 {
-    /*********** start string testing ************/
+    /*********** start string testing *************/
     printf("\nSTART STRING TEST SIM:\n");
 
     char *a = malloc(sizeof(char) * 100);
