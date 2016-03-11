@@ -5,7 +5,9 @@ static mementry *head;
 void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
 {
     if(!head){
-        // jordano
+        head = (mementry*) sbrk(sizeof(mementry) + numBytes);
+        editMementry(head, numBytes, 1, head + sizeof(mementry), NULL);
+        return head->ptr;
     }
 
     mementry *prev = NULL;
@@ -15,7 +17,8 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
     {
         size_t diff = curr->numBytes - numBytes;
 
-        if(curr->isFree){
+        if(curr->isFree)
+        {
             if(diff == 0){
                 curr->isFree = 0;
                 return curr->ptr;
@@ -55,19 +58,44 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
     return curr->ptr;
 }
 
-myrealloc(void *ptr, size_t numBytes, const char *filename, const int lineNumber)
+void* myrealloc(void *ptr, size_t numBytes, const char *filename, const int lineNumber)
 {
+    void* block = malloc(numBytes);
+    if(!block){
+        return NULL;
+    }
 
+    memcpy(block, ptr, findEntry(ptr)->numBytes);
+    free(ptr);
+
+    return block;
 }
 
-mycalloc(size_t numItems, size_t size, const char *filename, const int lineNumber)
+void* mycalloc(size_t numItems, size_t size, const char *filename, const int lineNumber)
 {
+    size_t numBytes = (numItems * size);
 
+    void *block = malloc(numBytes);
+    if(!block){
+        return NULL:
+    }
+
+    memset(block, 0, numBytes);
+
+    return block;
 }
 
-myfree(void *ptr, const char *filename, const int lineNumber)
+void myfree(void *ptr, const char *filename, const int lineNumber)
 {
+    mementry *curr = head;
+    while(curr)
+    {
+        curr->ptr->isFree = (curr->ptr == ptr) ? 1 : curr->ptr->isFree;
 
+        curr = curr->next;
+    }
+
+    return;
 }
 
 void editMementry(mementry *m, size_t numBytes, int isFree, void *ptr, mementry *next)
@@ -76,4 +104,19 @@ void editMementry(mementry *m, size_t numBytes, int isFree, void *ptr, mementry 
     m->isFree = isFree;
     m->ptr = ptr;
     m->next = next;
+}
+
+mementry* findEntry(void *ptr)
+{
+    mementry *curr = head;
+    while(curr)
+    {
+        if(curr->ptr == ptr){
+            return curr;
+        }
+
+        curr = curr->next;
+    }
+
+    return NULL;
 }
