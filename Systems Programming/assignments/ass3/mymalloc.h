@@ -33,6 +33,11 @@ void* mycalloc(size_t numItems, size_t size,
 void myfree(void *ptr, const char *filename, const int lineNumber);
 
 /*
+* print heap contents
+*/
+void printHeap();
+
+/*
 * Macros which add the filename and line number to the arguments
 * that are to be passed to these functions.
 */

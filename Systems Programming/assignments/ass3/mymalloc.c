@@ -36,16 +36,21 @@ typedef struct mementry_
     struct mementry_ *next;
 } mementry;
 
-mementry* findEntry(void *ptr);
-
-void editMementry(mementry *m, size_t numBytes,
-    int isFree, void *ptr, mementry *next);
-
-int cleanup(mementry *m, int place);
-
-
 /* Pointer to the first memory block in the heap */
 static mementry *head;
+
+/* forward declarations */
+mementry* findEntry(void *ptr);
+void editMementry(mementry *m, size_t numBytes,
+    int isFree, void *ptr, mementry *next);
+int cleanup(mementry *m, int place);
+void printHeap();
+void* mymalloc(size_t numBytes, const char *filename, const int lineNumber);
+void* myrealloc(void *ptr, size_t numBytes,
+    const char *filename, const int lineNumber);
+void* mycalloc(size_t numItems, size_t size,
+    const char *filename, const int lineNumber);
+    void myfree(void *ptr, const char *filename, const int lineNumber);
 
 void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
 {
@@ -237,6 +242,8 @@ int cleanup(mementry *m, int place)
         //im first, the thing above is free, im free, so i should free both
         if(m->isFree && place == 0){
             sbrk( (m->numBytes + sizeof(mementry)) * -1 );
+            head = NULL;
+            return 0;
         }
 
         return m->isFree;
@@ -244,7 +251,31 @@ int cleanup(mementry *m, int place)
 
     if(m->isFree && place == 0){ //im the only block and free
         sbrk( (m->numBytes + sizeof(mementry)) * -1 );
+        head = NULL;
+        return 0;   
     }
 
     return m->isFree; //thing above is null
+}
+
+/* prints the heap contents */
+void printHeap()
+{
+    mementry *curr = head;
+    if(!curr){
+        printf("%s\n", "Heap is empty");
+        return;
+    }
+
+    int i = 1;
+    while(curr)
+    {
+        printf("Heap contents:\nBlock %d: free: %s\tbytes: %zu\n", i++,
+            (curr->isFree) ? "yes" : "no",
+            curr->numBytes);
+
+        curr = curr->next;
+    }
+
+    return;
 }

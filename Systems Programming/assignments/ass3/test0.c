@@ -11,22 +11,27 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
+    printHeap();
+
     int i;
     for(i = 0; i < 10; i++)
     {
-        printf("%s", (!nums[i]) ?
+        printf("%s\n", (!nums[i]) ?
             "It was calloc'd properly" :
             "It was not calloc'd properly");
-            
+
         nums[i] = i;
     }
 
     for(i = 0; i < 10; i++)
     {
-        printf("%s", (nums[i] == i) ?
+        printf("%s\n", (nums[i] == i) ?
             "values were assigned properly" :
             "values were not assigned properly");
     }
+
+    free(nums);
+    printHeap();
 
     return EXIT_SUCCESS;
 }
