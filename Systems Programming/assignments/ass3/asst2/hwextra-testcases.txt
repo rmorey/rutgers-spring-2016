@@ -1,0 +1,19 @@
+Test 0
+----------------------
+In test0, we test calloc by allocating space for 10 ints and then setting their values.
+
+Test1
+----------------------
+We test realloc by doing the same thing that we did in test0, but then reallocating for another 10 ints and setting them to values as well. We test that our old data was preserved.
+
+Test2
+----------------------
+We test malloc by performing many mallocs and checking for NULL on any of the returns.
+
+Test3
+----------------------
+We test to see if we catch double frees and freeing pointers that were not returned by malloc.
+
+Test4
+----------------------
+This is a test of how our code handles fragmentation. We first free a block of memory between 2 allocated blocks of memory and then request two smaller amounts which are less than the previous block we freed. As expected, our code uses the previously freed block to provide space for the 2 requests. We then free all them memory and check to see if the heap is empty so that there are no memory leaks.

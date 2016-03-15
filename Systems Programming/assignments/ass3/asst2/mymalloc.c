@@ -16,6 +16,8 @@
 * in between allocated blocks can lead to more fragmentation.
 */
 #define MIN_BLOCK_SIZE 100
+/* max # of bytes that is to be given out */
+#define MAX_MEMORY 10000
 
 /*
 * This struct acts as a descriptor for a block
@@ -50,7 +52,7 @@ void* myrealloc(void *ptr, size_t numBytes,
     const char *filename, const int lineNumber);
 void* mycalloc(size_t numItems, size_t size,
     const char *filename, const int lineNumber);
-    void myfree(void *ptr, const char *filename, const int lineNumber);
+void myfree(void *ptr, const char *filename, const int lineNumber);
 
 void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
 {
@@ -60,6 +62,7 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
         if(head == (void*)-1){
             printf("Ran out of memory on line: %d in file: %s\n",
                 lineNumber, filename);
+            head = NULL;
             return NULL;
         }
 
@@ -87,7 +90,7 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
                 mementry *freeBlock = curr;
                 // advance ptr past mementry and new user memory
                 freeBlock += 1;
-                char *temp = ((char *) freeBlock) + numBytes; //to move by bytes
+                char *temp = ((char *) freeBlock) + numBytes; //move by bytes
                 freeBlock = (mementry*) temp;
                 // create the mementry for new free block
                 editMementry(freeBlock,
@@ -109,14 +112,14 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
         curr = curr->next;
     }
 
-    /* allocate memmory on the heap */
+    /* allocate memory on the heap */
     curr = (mementry*) sbrk(sizeof(mementry) + numBytes);
     if(curr == (void*)-1){
         printf("Ran out of memory on line: %d in file: %s\n",
             lineNumber, filename);
         return NULL;
     }
-    editMementry(curr, numBytes, 0, (curr + 1), NULL);
+    editMementry(curr, numBytes, 0, (void*) (curr + 1), NULL);
     prev->next = curr; // point last block to new block
 
     return curr->ptr;
@@ -153,13 +156,13 @@ void* mycalloc(size_t numItems, size_t size,
 
 void myfree(void *ptr, const char *filename, const int lineNumber)
 {
+    mementry *prev = NULL;
     mementry *curr = head;
     while(curr)
     {
         if(curr->ptr == ptr){
             if(curr->isFree){
-                printf("ERROR pointer already free'd on \
-                    line: %d, in file: %s\n",
+                printf("ERROR pointer already free'd on line: %d, in file: %s\n",
                     lineNumber, filename);
 
                 return;
@@ -172,6 +175,11 @@ void myfree(void *ptr, const char *filename, const int lineNumber)
                     (curr->numBytes + curr->next->numBytes + sizeof(mementry)),
                     1, curr->ptr, curr->next->next);
             }
+            if(prev && prev->isFree){
+                editMementry(prev,
+                    (prev->numBytes + curr->numBytes + sizeof(mementry)),
+                    1, prev->ptr, curr->next);
+            }
 
             // heap cleanup
             cleanup(head, 0);
@@ -179,7 +187,7 @@ void myfree(void *ptr, const char *filename, const int lineNumber)
             return;
         }
 
-
+        prev = curr;
         curr = curr->next;
     }
 
@@ -233,11 +241,12 @@ int cleanup(mementry *m, int place)
     }
 
     int i = cleanup(m->next, place + 1);
-    if(i == 0){ //thing above isnt free
+    if(i == 0){ //thing above wasnt free
         return 0;
     }
-    else if(i == 1){ //thing above is free
+    else if(i == 1){ //thing above was free
         sbrk( (m->next->numBytes + sizeof(mementry)) * -1 ); // remove from heap
+        m->next = NULL; // remove from mementry linked list
 
         //im first, the thing above is free, im free, so i should free both
         if(m->isFree && place == 0){
@@ -252,10 +261,10 @@ int cleanup(mementry *m, int place)
     if(m->isFree && place == 0){ //im the only block and free
         sbrk( (m->numBytes + sizeof(mementry)) * -1 );
         head = NULL;
-        return 0;   
+        return 0;
     }
 
-    return m->isFree; //thing above is null
+    return m->isFree; //thing above was null
 }
 
 /* prints the heap contents */
@@ -267,10 +276,11 @@ void printHeap()
         return;
     }
 
+    printf("%s\n", "Heap contents:\n");
     int i = 1;
     while(curr)
     {
-        printf("Heap contents:\nBlock %d: free: %s\tbytes: %zu\n", i++,
+        printf("Block %d: free: %s\tbytes: %zu\n", i++,
             (curr->isFree) ? "yes" : "no",
             curr->numBytes);
 
