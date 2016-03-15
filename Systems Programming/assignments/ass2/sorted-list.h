@@ -41,7 +41,7 @@ typedef void (*DestructFuncT)( void * );
 //===0.1: List Definition, List Create/Destroy
 
 /*
- * <explanation goes here>
+ * <explanation goes here..>
  */
 struct Node
 {
