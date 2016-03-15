@@ -1,5 +1,40 @@
+/**************************************************************
+* This is the source code for the custom malloc library "mymalloc".
+* Authors: Jordan Lyon and Biggie Emmanuel
+***************************************************************/
+
+#include <unistd.h>
 #include "mymalloc.h"
 
+/*
+* This number represents the smallest # of bytes for a block of memory
+* that can be broken off from a larger block of free memory.
+*
+* This is done because creating really small chunks of memory
+* in between allocated blocks can lead to more fragmentation.
+*/
+#define MIN_BLOCK_SIZE 100
+
+/*
+* This struct acts as a descriptor for a block
+* of memory in the heap by holding the properties of the block.
+* All mementries form a linked list to allow traversal of
+* all the memory blocks.
+*
+* numBytes: Number of bytes in the block
+* isFree: set to any nonzero number if the block is free and 0 otherwise.
+* ptr: A ptr to where the block memory begins.
+* next: a pointer to the next mementry in the heap.
+*/
+typedef struct mementry_
+{
+    size_t numBytes;
+    int isFree;
+    void *ptr;
+    struct mementry_ *next;
+} mementry;
+
+/* Pointer to the first memory block in the heap */
 static mementry *head;
 
 void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
@@ -21,24 +56,24 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
         {
             if(diff == 0){
                 curr->isFree = 0;
-                return curr->ptr;
             }
             else if(diff > MIN_BLOCK_SIZE){
                 nextBlock = (char*) curr->ptr;
                 nextBlock += numBytes;
                 nextBlock = (mementry*) nextBlock;
 
-                editMementry(nextBlock, (curr->numBytes) - (numBytes) - (sizeof(mementry)),
-                    1, nextBlock + sizeof(mementry), curr->next);
+                editMementry(nextBlock,
+                    (curr->numBytes) - (numBytes) - (sizeof(mementry)),
+                    1,
+                    nextBlock + sizeof(mementry), curr->next);
 
                 editMementry(curr, numBytes, 0, curr->ptr, nextBlock);
-
-                return curr->ptr;
             }
             else if(diff > 0){
                 curr->isFree = 0;
-                return curr->ptr;
             }
+
+            return curr->ptr;
         }
 
         prev = curr;
@@ -46,19 +81,19 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
     }
 
     curr = (mementry*) sbrk(sizeof(mementry) + numBytes);
-
-    if(errno == 12){
+    if(curr == (void*)-1){
         return NULL;
     }
 
-    editMementry(curr, numBytes, 0, (curr +1), NULL);
+    editMementry(curr, numBytes, 0, (curr + 1), NULL);
 
     prev->next = curr;
 
     return curr->ptr;
 }
 
-void* myrealloc(void *ptr, size_t numBytes, const char *filename, const int lineNumber)
+void* myrealloc(void *ptr, size_t numBytes,
+    const char *filename, const int lineNumber)
 {
     void* block = malloc(numBytes);
     if(!block){
@@ -71,7 +106,8 @@ void* myrealloc(void *ptr, size_t numBytes, const char *filename, const int line
     return block;
 }
 
-void* mycalloc(size_t numItems, size_t size, const char *filename, const int lineNumber)
+void* mycalloc(size_t numItems, size_t size,
+    const char *filename, const int lineNumber)
 {
     size_t numBytes = (numItems * size);
 
@@ -90,7 +126,9 @@ void myfree(void *ptr, const char *filename, const int lineNumber)
     mementry *curr = head;
     while(curr)
     {
-        curr->ptr->isFree = (curr->ptr == ptr) ? 1 : curr->ptr->isFree;
+        if(curr->ptr == ptr){
+            curr->ptr->isFree = 1;
+        }
 
         curr = curr->next;
     }
@@ -98,7 +136,13 @@ void myfree(void *ptr, const char *filename, const int lineNumber)
     return;
 }
 
-void editMementry(mementry *m, size_t numBytes, int isFree, void *ptr, mementry *next)
+/******************** Helper Methods ********************/
+
+/*
+*
+*/
+void editMementry(mementry *m, size_t numBytes,
+    int isFree, void *ptr, mementry *next)
 {
     m->numBytes = numBytes;
     m->isFree = isFree;
@@ -106,6 +150,9 @@ void editMementry(mementry *m, size_t numBytes, int isFree, void *ptr, mementry 
     m->next = next;
 }
 
+/*
+*
+*/
 mementry* findEntry(void *ptr)
 {
     mementry *curr = head;
