@@ -70,7 +70,6 @@ void* mymalloc(size_t numBytes, const char *filename, const int lineNumber)
         return head->ptr;
     }
 
-    /* check through previously free'd blocks */
     mementry *prev = NULL;
     mementry *curr = head;
     while(curr)
@@ -271,12 +270,7 @@ int cleanup(mementry *m, int place)
 void printHeap()
 {
     mementry *curr = head;
-    if(!curr){
-        printf("%s\n", "Heap is empty");
-        return;
-    }
-
-    printf("%s\n", "Heap contents:\n");
+    printf("%s\n", (curr) ? "Heap contents:\n" : "Heap is Empty");
     int i = 1;
     while(curr)
     {
