@@ -8,6 +8,30 @@
 
 #include<stdlib.h>
 #include<stdio.h>
+#include<string.h>
+
+struct FileOccurence;
+struct LetterNode;
+struct WordTrie;
+
+FileOccurence* addFileOccurence(const char *filename, FileOccurence *list);
+int hasFileOccurence(const char *filename, FileOccurence *list);
+FileOccurence* sortFileOccurences(FileOccurence *list);
+LetterNode* newLetterNode(char data);
+WordTrie* newWordTrie();
+
+/******
+ *MAIN
+******/
+
+int main(int argc, char const *argv[])
+{
+
+
+
+
+    return EXIT_SUCCESS;
+}
 
 /************************
  *FileOccurence Struct/Methods
@@ -31,7 +55,8 @@ typedef struct FileOccurence
 } FileOccurence;
 
 /*
- *Creates a new FileOccurence and adds it to the front of list
+ *Creates a new FileOccurence, adds it to the front of list, sorts the list (descending),
+ *and then returns a ptr to the new list.
  *
  * params:
  * filename: name of the file
@@ -46,7 +71,74 @@ FileOccurence* addFileOccurence(const char *filename, FileOccurence *list)
     f->filename = filename;
     f->next = list;
 
-    return f;
+    return sortFileOccurences(f);
+}
+
+/*
+ * Check to see if a file is in a given list of FileOccurences
+ *
+ * params:
+ * filename: name of file to search for
+ * list: current list of FileOccurences
+ *
+ * returns:
+ * 0: Not found
+ * 1: Found
+ */
+int hasFileOccurence(const char *filename, FileOccurence *list)
+{
+    while(list){
+        if(strcmp(list->filename, filename) == 0){
+            return 1; // found file
+        }
+
+        list = list->next;
+    }
+
+    return 0;
+}
+
+/*
+ * Sort FileOccurences. BUBBLE-SORT FTW
+ */
+FileOccurence* sortFileOccurences(FileOccurence *list)
+{
+    int madeSwap = 1;
+    FileOccurence *prev, *curr, *next;
+    prev = curr = next = NULL;
+
+    curr = list;
+    if(!curr){
+        return curr;
+    }
+
+    do
+    {
+        next = curr->next;
+        if(next)
+        {
+            if(curr->count < next->count)
+            { // make a swap
+                madeSwap = 1;
+                if(prev)
+                {
+                    prev->next = next;
+                    curr->next = next->next;
+                    next->next = curr;
+                }
+                else{
+                    list = next;
+                    curr->next = next->next;
+                    next->next = curr;
+                }
+            }
+        }
+
+        prev = curr;
+        curr = next;
+    } while(curr && madeSwap);
+
+    return list;
 }
 
 /************************
@@ -81,7 +173,7 @@ LetterNode* newLetterNode(char data)
 {
     LetterNode *l = (LetterNode*) malloc(sizeof(LetterNode));
     l->data = data;
-    l->children = (LetterNode**) calloc(26, sizeof(LetterNode*));
+    l->children = (LetterNode**) calloc(122, sizeof(LetterNode*));
     l->fileOccurences = NULL;
 
     return l;
@@ -114,11 +206,11 @@ WordTrie* newWordTrie()
     return w;
 }
 
-int main(int argc, char const *argv[])
+/*************
+ *Misc Methods
+*************/
+
+void writeJSON(WordTrie* trie)
 {
 
-
-
-
-    return EXIT_SUCCESS;
 }
