@@ -3,19 +3,22 @@
  *
  *Program to index files in a given directory.
  *
- *Authors: BIggie Emmanuel and Jordano Lyono
+ *Authors: BIggie Emmanuel and Jordan Lyon
 ***************************************************************/
 
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
-#include <sys/stat.h>
+#include<sys/stat.h>
+#include<sys/types.h>
+#include<limits.h>
+#include<dirent.h>
 
 typedef struct FileOccurence FileOccurence;
 typedef struct LetterNode LetterNode;
 typedef struct WordTrie WordTrie;
 
-FileOccurence* addFileOccurence(const char *filename, FileOccurence *list);
+FileOccurence* addFileOccurence(char *filename, FileOccurence *list);
 int hasFileOccurence(const char *filename, FileOccurence *list);
 FileOccurence* sortFileOccurences(FileOccurence *list);
 LetterNode* newLetterNode(char data);
@@ -25,6 +28,9 @@ int fileExists(char *filename);
 void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json, int wordNum);
 char *appendChar(char *dest, char src);
 char *removeChar(char *str);
+void traverse(char *dirName);
+char** tokenizer(char *fileName);
+int validPathSize(char* dirname, char* name);
 
 /******
  *MAIN
@@ -34,8 +40,16 @@ WordTrie *trie = NULL;
 
 int main(int argc, char *argv[])
 {
+    if(argc != 2)
+    {
+        printf("Invalid number of arguments");
+        return EXIT_FAILURE;
+    }
 
-    return EXIT_SUCCESS;
+    char* dir = argv[1];
+    traverse(dir);
+
+    return 0;
 }
 
 /************************
@@ -354,4 +368,93 @@ int fileExists(char *filename)
 {
     struct stat st;
     return (stat(filename, &st) == 0);
+}
+
+/*char** tokenizer(char *fileName)
+{
+   FILE *fp = fopen(fileName, "r");
+
+   if(fp == NULL) //file not found
+   {
+       printf("error - File does not exist\n");
+       return 0;
+   }
+   //------empty file check--------
+   fseek(fp, 0, SEEK_END);
+   if(ftell(fp) == 0)
+   {
+        printf("0\n");
+        return 0;
+   }
+   fseek(fp, 0, SEEK_SET);
+   //------------------------------
+
+   char *line;
+   int i = 0;
+   if(fgets(line, strlen(line), fp) != NULL)
+   {
+       char **arr = (char**)malloc(10 * sizeof(char*));
+       arr[i] = strtok(line, " ");
+       i++;
+   }
+
+   return arr;
+}*/
+
+/* Trarverses the directory, and adds all words in all files to trie */
+void traverse(char *dirName)
+{
+    DIR *dir;
+    if((dir = opendir(dirName)) == NULL)
+    {
+        printf("Cannot open directory\n");
+        exit(EXIT_FAILURE);
+    }
+
+    struct dirent *dptr;
+    while((dptr = readdir(dir)) != NULL)
+    {
+        char *name = dptr->d_name;
+
+        if(dptr->d_type == DT_DIR) // its a directory
+        {
+            // can't be current directory or parent directory
+            if(strcmp(name, "..") && strcmp(name, "."))
+            {
+                char path[PATH_MAX]; //holds full path
+                if(validPathSize(dirName, name))
+                {
+                    snprintf(path, PATH_MAX, "%s/%s", dirName, name);
+                    printf("%s\n", path);
+                    traverse(path);
+                }
+                else
+                {
+                    printf("path too long");
+                    exit(EXIT_FAILURE);
+                }
+            }
+        }
+        else //dptr->d_type != DT_DIR (its a file)
+        {
+            printf("%s/%s\n", dirName, name);
+        }
+    }
+    closedir(dir);
+
+    return;
+}
+
+/*
+ * params:
+ * name: current directory or file name
+ * dirname: name of parent directory of name
+ *
+ * returns:
+ * nonzero int: full path to name is less than PATH_MAX (max pathname length)
+ * 0: path name too big
+ */
+int validPathSize(char* dirname, char* name)
+{
+    return ((strlen(dirname) + strlen(name)) < PATH_MAX);
 }
