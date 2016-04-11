@@ -61,7 +61,7 @@ state_struct(Name, [_ | Rest_states], State_struct) :-
 
 % define next_state_name here
 
-next_state_name(state(Name, [transition(Curr_char, Next_name) | _], Accepting), [Curr_char | Rest_chars], Next_name, Rest_chars).
+next_state_name(state(_, [transition(Curr_char, Next_name) | _], _), [Curr_char | Rest_chars], Next_name, Rest_chars).
 next_state_name(state(Name, [_ | Rest_trans], Accepting), Chars, Next_name, Rest_chars) :- 
     next_state_name(state(Name, Rest_trans, Accepting), Chars, Next_name, Rest_chars).
 
