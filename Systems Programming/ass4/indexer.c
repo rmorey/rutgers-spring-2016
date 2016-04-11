@@ -20,14 +20,17 @@ int hasFileOccurence(const char *filename, FileOccurence *list);
 FileOccurence* sortFileOccurences(FileOccurence *list);
 LetterNode* newLetterNode(char data);
 WordTrie* newWordTrie();
-void writeJSON(WordTrie* trie, char* filename);
+void writeJSON(char* filename);
 int fileExists(char *filename);
-void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json);
+void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json, int wordNum);
 char *appendChar(char *dest, char src);
+char *removeChar(char *str);
 
 /******
  *MAIN
 ******/
+
+WordTrie *trie = NULL;
 
 int main(int argc, char *argv[])
 {
@@ -52,7 +55,7 @@ int main(int argc, char *argv[])
 typedef struct FileOccurence
 {
     int count;
-    const char *filename;
+    char *filename;
     struct FileOccurence *next;
 } FileOccurence;
 
@@ -66,7 +69,7 @@ typedef struct FileOccurence
  *
  * returns: pointer to new FileOccurence
  */
-FileOccurence* addFileOccurence(const char *filename, FileOccurence *list)
+FileOccurence* addFileOccurence(char *filename, FileOccurence *list)
 {
     FileOccurence* f = (FileOccurence*) malloc(sizeof(FileOccurence));
     f->count = 0;
@@ -199,6 +202,7 @@ LetterNode* newLetterNode(char data)
 typedef struct WordTrie
 {
     LetterNode *head;
+    int numWords;
 } WordTrie;
 
 /*
@@ -212,6 +216,7 @@ WordTrie* newWordTrie()
 {
     WordTrie *w = (WordTrie*) malloc(sizeof(WordTrie));
     w->head = newLetterNode('\0');
+    w->numWords = 0;
 
     return w;
 }
@@ -220,7 +225,10 @@ WordTrie* newWordTrie()
  *Misc Methods
 *************/
 
-void writeJSON(WordTrie* trie, char* filename)
+/*
+ * Write contents of trie in json format to a file (1)
+ */
+void writeJSON(char* filename)
 {
     // if file exists, ask user to overwrite
     if(fileExists(filename))
@@ -250,7 +258,7 @@ void writeJSON(WordTrie* trie, char* filename)
     {
         if(trie->head->children[i])
         {
-            writeJSONBody(trie->head->children[i], NULL, json);
+            writeJSONBody(trie->head->children[i], NULL, json, 0);
         }
     }
 
@@ -262,18 +270,40 @@ void writeJSON(WordTrie* trie, char* filename)
 }
 
 /*
+ * Write contents of trie in json format to a file (2)
  * writes the word, along with occurences in files, to the specified file
  */
-void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json)
+void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json, int wordNum)
 {
-    // append char to buffer
+    wordBuffer = appendChar(wordBuffer, curr->data);
 
+    // this letter is the end of a word, so add to json
+    if(curr->fileOccurences)
+    {
+        wordNum++;
+
+        fprintf(json, "\t{\"%s\" : [\n", wordBuffer);
+
+        FileOccurence *f = curr->fileOccurences;
+        while(f){
+            fprintf(json, "\t\t\{\"%s\" : %d%s\n", f->filename, f->count,
+                (f->next) ? "}," : "}");
+        }
+
+        fprintf(json, "%s", (wordNum < trie->numWords) ? "]}," : "]}");
+    }
 
     int i = 0;
     for(; i < curr->childrenLength; i++)
     {
-
+        if(curr->children[i]){
+            writeJSONBody(curr->children[i], wordBuffer, json, wordNum);
+        }
     }
+
+    removeChar(wordBuffer);
+
+    return;
 }
 
 /*
@@ -297,7 +327,7 @@ char *appendChar(char *dest, char src)
 }
 
 /*
-
+ * remove char from string. return pointer to it (deallocates space for the char as well)
  */
 char *removeChar(char *str)
 {
