@@ -9,26 +9,28 @@
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
+#include <sys/stat.h>
 
-struct FileOccurence;
-struct LetterNode;
-struct WordTrie;
+typedef struct FileOccurence FileOccurence;
+typedef struct LetterNode LetterNode;
+typedef struct WordTrie WordTrie;
 
 FileOccurence* addFileOccurence(const char *filename, FileOccurence *list);
 int hasFileOccurence(const char *filename, FileOccurence *list);
 FileOccurence* sortFileOccurences(FileOccurence *list);
 LetterNode* newLetterNode(char data);
 WordTrie* newWordTrie();
+void writeJSON(WordTrie* trie, char* filename);
+int fileExists(char *filename);
+void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json);
+char *appendChar(char *dest, char src);
 
 /******
  *MAIN
 ******/
 
-int main(int argc, char const *argv[])
+int main(int argc, char *argv[])
 {
-
-
-
 
     return EXIT_SUCCESS;
 }
@@ -99,7 +101,7 @@ int hasFileOccurence(const char *filename, FileOccurence *list)
 }
 
 /*
- * Sort FileOccurences. BUBBLE-SORT FTW
+ * Sort FileOccurences in descending order. BUBBLE-SORT FTW
  */
 FileOccurence* sortFileOccurences(FileOccurence *list)
 {
@@ -117,8 +119,12 @@ FileOccurence* sortFileOccurences(FileOccurence *list)
         next = curr->next;
         if(next)
         {
-            if(curr->count < next->count)
-            { // make a swap
+            // make swap if curr file has lower occurence
+            // or curr and next have the same occurence, but next's filename
+            // is alphanumerically before curr
+            if((curr->count < next->count) ||
+                ((curr->count == next->count) && (strcmp(curr->filename, next->filename) > 0)))
+            {
                 madeSwap = 1;
                 if(prev)
                 {
@@ -153,12 +159,15 @@ FileOccurence* sortFileOccurences(FileOccurence *list)
  * children: array for 26 possible child LetterNodes (1 per letter)
  *
  * fileOccurences: list of # of occurences of the word in a given file
+ *
+ * childrenLength: size of array of children
  */
 typedef struct LetterNode
 {
     char data;
     struct  LetterNode **children;
     FileOccurence *fileOccurences;
+    int childrenLength;
 } LetterNode;
 
 /*
@@ -175,6 +184,7 @@ LetterNode* newLetterNode(char data)
     l->data = data;
     l->children = (LetterNode**) calloc(122, sizeof(LetterNode*));
     l->fileOccurences = NULL;
+    l->childrenLength = 122;
 
     return l;
 }
@@ -210,7 +220,108 @@ WordTrie* newWordTrie()
  *Misc Methods
 *************/
 
-void writeJSON(WordTrie* trie)
+void writeJSON(WordTrie* trie, char* filename)
 {
+    // if file exists, ask user to overwrite
+    if(fileExists(filename))
+    {
+        char response[50];
+        printf("File already exists, overwrite? (Enter yes or no): ");
+        scanf("%s", response);
+        while((strcmp(response, "no") != 0) && (strcmp(response, "yes") != 0)){
+            printf("%s", "\nInvalid response, try again: ");
+        }
+        if(strcmp(response, "no") == 0)
+        {
+            return;
+        }
+        else{
+            remove(filename);
+        }
+    }
 
+    // write first line of file
+    FILE *json = fopen(filename, "r");
+    fprintf(json, "%s", "{\"list\" : [\n");
+
+    // write body of file
+    int i = 0;
+    for(; i < trie->head->childrenLength; i++)
+    {
+        if(trie->head->children[i])
+        {
+            writeJSONBody(trie->head->children[i], NULL, json);
+        }
+    }
+
+    // write last line of file
+    fprintf(json, "%s", "]}");
+
+
+    return;
+}
+
+/*
+ * writes the word, along with occurences in files, to the specified file
+ */
+void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json)
+{
+    // append char to buffer
+
+
+    int i = 0;
+    for(; i < curr->childrenLength; i++)
+    {
+
+    }
+}
+
+/*
+ * appends a char to a string (string does not need space for it beforehand)
+ */
+char *appendChar(char *dest, char src)
+{
+    if(dest) // string not null
+    {
+        dest = (char*) realloc(dest, (strlen(dest) + 2) * sizeof(char));
+        strcat(dest, &src);
+    }
+    else // null string
+    {
+        dest = (char*) malloc(sizeof(char) * 2);
+        dest[0] = src;
+        dest[1] = '\0';
+    }
+
+    return dest;
+}
+
+/*
+
+ */
+char *removeChar(char *str)
+{
+    if(!str){
+        return NULL;
+    }
+
+    char *newStr = (char*) calloc(strlen(str), sizeof(char));
+    strncpy(newStr, str, strlen(str) - 1);
+
+    return newStr;
+}
+
+/*
+ * Check if file exists
+ *
+ * param: name of file
+ *
+ * returns:
+ * 0: does not exit
+ * 1: does exist
+ */
+int fileExists(char *filename)
+{
+    struct stat st;
+    return (stat(filename, &st) == 0);
 }
