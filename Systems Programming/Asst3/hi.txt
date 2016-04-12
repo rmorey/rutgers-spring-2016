@@ -1,0 +1,1278 @@
+{"list" : [
+	{"a" : [
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//two.txt" : 5},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2}
+	]},
+	{"ac" : [
+		{"testdir//sub2/subsub2/six.txt" : 13},
+		{"testdir//sub2/four.txt" : 8},
+		{"testdir//sub1/subsub1/five.txt" : 7},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//two.txt" : 4}
+	]},
+	{"accumsan" : [
+		{"testdir//sub2/four.txt" : 7},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"ad" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"adipiscing" : [
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"aenean" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"aliquam" : [
+		{"testdir//sub1/three.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//two.txt" : 4},
+		{"testdir//one.txt" : 2}
+	]},
+	{"aliquet" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"amet" : [
+		{"testdir//one.txt" : 9},
+		{"testdir//sub2/four.txt" : 9},
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//two.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 3}
+	]},
+	{"ante" : [
+		{"testdir//sub2/four.txt" : 7},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"aptent" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"arcu" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2}
+	]},
+	{"at" : [
+		{"testdir//sub2/four.txt" : 12},
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//two.txt" : 4},
+		{"testdir//one.txt" : 3}
+	]},
+	{"auctor" : [
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"augue" : [
+		{"testdir//sub1/three.txt" : 7},
+		{"testdir//sub2/subsub2/six.txt" : 6},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 2}
+	]},
+	{"bibendum" : [
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"blandit" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 4},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"class" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"commodo" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"condimentum" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"congue" : [
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"consectetur" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"consequat" : [
+		{"testdir//two.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"conubia" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"convallis" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"cras" : [
+		{"testdir//two.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"cubilia" : [
+		{"testdir//one.txt" : 1}
+	]},
+	{"cum" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"curabitur" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 1}
+	]},
+	{"curae" : [
+		{"testdir//one.txt" : 1}
+	]},
+	{"cursus" : [
+		{"testdir//sub1/subsub1/five.txt" : 7},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"dapibus" : [
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"diam" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 2}
+	]},
+	{"dictum" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"dictumst" : [
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"dignissim" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2}
+	]},
+	{"dis" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"dolor" : [
+		{"testdir//sub2/four.txt" : 6},
+		{"testdir//sub2/subsub2/six.txt" : 6},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"donec" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"dui" : [
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"duis" : [
+		{"testdir//sub2/subsub2/six.txt" : 7},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"efficitur" : [
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2}
+	]},
+	{"egestas" : [
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"eget" : [
+		{"testdir//one.txt" : 10},
+		{"testdir//sub1/three.txt" : 9},
+		{"testdir//sub2/four.txt" : 9},
+		{"testdir//sub2/subsub2/six.txt" : 9},
+		{"testdir//two.txt" : 9},
+		{"testdir//sub1/subsub1/five.txt" : 7}
+	]},
+	{"eleifend" : [
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"elementum" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"elit" : [
+		{"testdir//sub2/four.txt" : 7},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2}
+	]},
+	{"enim" : [
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3}
+	]},
+	{"erat" : [
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"eros" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"est" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"et" : [
+		{"testdir//sub2/four.txt" : 10},
+		{"testdir//sub2/subsub2/six.txt" : 10},
+		{"testdir//sub1/subsub1/five.txt" : 9},
+		{"testdir//one.txt" : 8},
+		{"testdir//two.txt" : 5},
+		{"testdir//sub1/three.txt" : 3}
+	]},
+	{"etiam" : [
+		{"testdir//two.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"eu" : [
+		{"testdir//sub1/three.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub2/four.txt" : 6},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 3}
+	]},
+	{"euismod" : [
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2}
+	]},
+	{"ex" : [
+		{"testdir//one.txt" : 9},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"facilisi" : [
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"facilisis" : [
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"fames" : [
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"faucibus" : [
+		{"testdir//sub2/subsub2/six.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//two.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3}
+	]},
+	{"felis" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//two.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"fermentum" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"feugiat" : [
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"finibus" : [
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"fringilla" : [
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"fusce" : [
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"gravida" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"habitant" : [
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"habitasse" : [
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"hac" : [
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"hendrerit" : [
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"himenaeos" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"iaculis" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"id" : [
+		{"testdir//two.txt" : 9},
+		{"testdir//one.txt" : 8},
+		{"testdir//sub2/subsub2/six.txt" : 6},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3}
+	]},
+	{"imperdiet" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"in" : [
+		{"testdir//one.txt" : 13},
+		{"testdir//sub2/subsub2/six.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//two.txt" : 5}
+	]},
+	{"inceptos" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"integer" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"interdum" : [
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"ipsum" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 3}
+	]},
+	{"justo" : [
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//two.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"lacinia" : [
+		{"testdir//sub2/subsub2/six.txt" : 8},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//two.txt" : 3}
+	]},
+	{"lacus" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"laoreet" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"lectus" : [
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"leo" : [
+		{"testdir//sub2/four.txt" : 11},
+		{"testdir//sub1/three.txt" : 7},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 1}
+	]},
+	{"libero" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2}
+	]},
+	{"ligula" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"litora" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"lobortis" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"lorem" : [
+		{"testdir//sub2/subsub2/six.txt" : 6},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"luctus" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"maecenas" : [
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"magna" : [
+		{"testdir//two.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"magnis" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"malesuada" : [
+		{"testdir//sub2/subsub2/six.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"massa" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"mattis" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"mauris" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 4}
+	]},
+	{"maximus" : [
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"metus" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"mi" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"molestie" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"mollis" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"montes" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"morbi" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"mus" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"nam" : [
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"nascetur" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"natoque" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"nec" : [
+		{"testdir//sub2/subsub2/six.txt" : 9},
+		{"testdir//sub1/three.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//one.txt" : 4},
+		{"testdir//two.txt" : 3}
+	]},
+	{"neque" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"netus" : [
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"nibh" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"nisi" : [
+		{"testdir//one.txt" : 6},
+		{"testdir//sub2/subsub2/six.txt" : 6},
+		{"testdir//two.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"nisl" : [
+		{"testdir//sub2/four.txt" : 6},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"non" : [
+		{"testdir//one.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 7},
+		{"testdir//sub2/four.txt" : 7},
+		{"testdir//two.txt" : 6},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4}
+	]},
+	{"nostra" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"nulla" : [
+		{"testdir//sub2/four.txt" : 10},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 4}
+	]},
+	{"nullam" : [
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"nunc" : [
+		{"testdir//sub1/subsub1/five.txt" : 8},
+		{"testdir//one.txt" : 7},
+		{"testdir//sub2/four.txt" : 6},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 2}
+	]},
+	{"odio" : [
+		{"testdir//sub1/three.txt" : 8},
+		{"testdir//one.txt" : 6},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"orci" : [
+		{"testdir//one.txt" : 7},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"ornare" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"parturient" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"pellentesque" : [
+		{"testdir//sub1/three.txt" : 7},
+		{"testdir//sub2/four.txt" : 7},
+		{"testdir//sub2/subsub2/six.txt" : 6},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//two.txt" : 1}
+	]},
+	{"penatibus" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"per" : [
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"pharetra" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"phasellus" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"placerat" : [
+		{"testdir//sub1/subsub1/five.txt" : 7},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"platea" : [
+		{"testdir//one.txt" : 1},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"porta" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"porttitor" : [
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"posuere" : [
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"potenti" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"praesent" : [
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1}
+	]},
+	{"pretium" : [
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"primis" : [
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"proin" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"pulvinar" : [
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"purus" : [
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"quam" : [
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"quis" : [
+		{"testdir//sub2/four.txt" : 8},
+		{"testdir//sub2/subsub2/six.txt" : 7},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//two.txt" : 1}
+	]},
+	{"quisque" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"rhoncus" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"ridiculus" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"risus" : [
+		{"testdir//sub2/subsub2/six.txt" : 7},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"rutrum" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"sagittis" : [
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"sapien" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/three.txt" : 2}
+	]},
+	{"scelerisque" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"sed" : [
+		{"testdir//sub2/four.txt" : 13},
+		{"testdir//sub1/subsub1/five.txt" : 11},
+		{"testdir//one.txt" : 10},
+		{"testdir//sub2/subsub2/six.txt" : 9},
+		{"testdir//sub1/three.txt" : 8},
+		{"testdir//two.txt" : 7}
+	]},
+	{"sem" : [
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 3}
+	]},
+	{"semper" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"senectus" : [
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"sit" : [
+		{"testdir//one.txt" : 9},
+		{"testdir//sub2/four.txt" : 9},
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//two.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 3}
+	]},
+	{"sociis" : [
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"sociosqu" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"sodales" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/four.txt" : 1}
+	]},
+	{"sollicitudin" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//one.txt" : 1},
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"suscipit" : [
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"suspendisse" : [
+		{"testdir//sub1/three.txt" : 4},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"taciti" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"tellus" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"tempor" : [
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"tempus" : [
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//two.txt" : 2}
+	]},
+	{"tincidunt" : [
+		{"testdir//sub2/four.txt" : 7},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//two.txt" : 1}
+	]},
+	{"torquent" : [
+		{"testdir//sub2/four.txt" : 1},
+		{"testdir//two.txt" : 1}
+	]},
+	{"tortor" : [
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"tristique" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//two.txt" : 1}
+	]},
+	{"turpis" : [
+		{"testdir//two.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"ullamcorper" : [
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"ultrices" : [
+		{"testdir//two.txt" : 4},
+		{"testdir//sub1/three.txt" : 3},
+		{"testdir//sub2/four.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"ultricies" : [
+		{"testdir//one.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//two.txt" : 2}
+	]},
+	{"urna" : [
+		{"testdir//sub1/subsub1/five.txt" : 6},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//two.txt" : 4},
+		{"testdir//one.txt" : 3},
+		{"testdir//sub1/three.txt" : 3}
+	]},
+	{"ut" : [
+		{"testdir//sub2/four.txt" : 11},
+		{"testdir//sub1/subsub1/five.txt" : 9},
+		{"testdir//sub1/three.txt" : 8},
+		{"testdir//two.txt" : 7},
+		{"testdir//one.txt" : 6},
+		{"testdir//sub2/subsub2/six.txt" : 6}
+	]},
+	{"varius" : [
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]},
+	{"vehicula" : [
+		{"testdir//one.txt" : 5},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub2/four.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"vel" : [
+		{"testdir//sub2/subsub2/six.txt" : 10},
+		{"testdir//sub1/three.txt" : 6},
+		{"testdir//sub2/four.txt" : 6},
+		{"testdir//one.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 5},
+		{"testdir//two.txt" : 3}
+	]},
+	{"velit" : [
+		{"testdir//sub1/three.txt" : 5},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//one.txt" : 3},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2}
+	]},
+	{"venenatis" : [
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"vestibulum" : [
+		{"testdir//one.txt" : 8},
+		{"testdir//sub1/subsub1/five.txt" : 8},
+		{"testdir//two.txt" : 6},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/subsub2/six.txt" : 2}
+	]},
+	{"vitae" : [
+		{"testdir//sub1/subsub1/five.txt" : 8},
+		{"testdir//sub1/three.txt" : 8},
+		{"testdir//sub2/four.txt" : 5},
+		{"testdir//one.txt" : 4},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 4}
+	]},
+	{"vivamus" : [
+		{"testdir//sub2/four.txt" : 6},
+		{"testdir//sub2/subsub2/six.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//one.txt" : 1}
+	]},
+	{"viverra" : [
+		{"testdir//two.txt" : 5},
+		{"testdir//sub1/subsub1/five.txt" : 3},
+		{"testdir//sub2/subsub2/six.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//sub2/four.txt" : 2}
+	]},
+	{"volutpat" : [
+		{"testdir//sub2/subsub2/six.txt" : 5},
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//two.txt" : 3},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 2},
+		{"testdir//sub1/three.txt" : 1}
+	]},
+	{"vulputate" : [
+		{"testdir//sub2/four.txt" : 4},
+		{"testdir//one.txt" : 2},
+		{"testdir//sub1/three.txt" : 2},
+		{"testdir//two.txt" : 2},
+		{"testdir//sub1/subsub1/five.txt" : 1},
+		{"testdir//sub2/subsub2/six.txt" : 1}
+	]}
+]}
