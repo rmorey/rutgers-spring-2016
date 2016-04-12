@@ -13,7 +13,6 @@
 #include<sys/types.h>
 #include<limits.h>
 #include<dirent.h>
-#include<ctype.h>
 
 typedef struct FileOccurence FileOccurence;
 typedef struct LetterNode LetterNode;
@@ -58,8 +57,6 @@ int main(int argc, char *argv[])
     traverse(dir);
 
     writeJSON(argv[1]);
-
-    printf("%d - %d\n", numWords, numWordsWritten);
 
     return 0;
 }
@@ -130,60 +127,48 @@ FileOccurence* hasFileOccurence(const char *filename, FileOccurence *list)
 }
 
 /*
- * Sort FileOccurences in descending order.
+ * Sort FileOccurences in descending order. BUBBLE-SORT FTW
  */
 FileOccurence* sortFileOccurences(FileOccurence *list)
 {
+    int madeSwap = 1;
     FileOccurence *prev, *curr, *next;
-    prev = NULL;
-    curr = NULL;
-    next = NULL;
+    prev = curr = next = NULL;
 
-    int swp = 0;
+    curr = list;
+    if(!curr){
+        return curr;
+    }
+
     do
     {
-        printf("%s\n", "do");
-        curr = list;
-        prev = NULL;
-        next = NULL;
-
-        swp = 0;
-        while(curr != NULL)
+        next = curr->next;
+        if(next)
         {
-            next = curr->next;
-            if(next)
+            // make swap if curr file has lower occurence
+            // or curr and next have the same occurence, but next's filename
+            // is alphanumerically before curr
+            if((curr->count < next->count) ||
+                ((curr->count == next->count) && (strcmp(curr->filename, next->filename) > 0)))
             {
-                // make swap if curr file has lower occurence
-                // or curr and next have the same occurence, but next's filename
-                // is alphanumerically before curr
-                if((curr->count < next->count) ||
-                    ((curr->count == next->count) && (strcmp(curr->filename, next->filename) > 0)))
+                madeSwap = 1;
+                if(prev)
                 {
-                    swp = 1;
-                    if(prev)
-                    {
-                        //printf("%s | %s\n", prev->filename, curr->filename);
-                        prev->next = next;
-                        curr->next = next->next;
-                        next->next = curr;
-                    }
-                    else{
-                        list = next;
-                        curr->next = next->next;
-                        next->next = curr;
-                    }
-                    prev = next;
+                    prev->next = next;
+                    curr->next = next->next;
+                    next->next = curr;
                 }
                 else{
-                    prev = curr;
-                    curr = curr->next;
+                    list = next;
+                    curr->next = next->next;
+                    next->next = curr;
                 }
             }
-            else{
-                break;
-            }
         }
-    }while(swp);
+
+        prev = curr;
+        curr = next;
+    } while(curr && madeSwap);
 
     return list;
 }
@@ -265,23 +250,18 @@ void wordTrieInsert(LetterNode *curr, char* word, unsigned int currLetterIndex, 
         return;
     }
 
-    letter = tolower(letter);
-
     if(!curr->children[(int) letter]){ // make new node
         curr->children[(int) letter] = newLetterNode(letter);
     }
 
     if(currLetterIndex == (strlen(word) - 1)) // last letter
     {
-        if(!curr->children[(int) letter]->fileOccurences){
-            numWords++;
-        }
-
         FileOccurence *f = NULL;
         if((f = hasFileOccurence(filename, curr->children[(int) letter]->fileOccurences))){
             f->count++;
         }
         else{
+            numWords++;
             curr->children[(int) letter]->fileOccurences = addFileOccurence(filename, curr->children[(int) letter]->fileOccurences);
         }
     }
@@ -300,6 +280,7 @@ void wordTrieInsert(LetterNode *curr, char* word, unsigned int currLetterIndex, 
  */
 void writeJSON(char* filename)
 {
+    printf("%s\n", "good");
     // if file exists, ask user to overwrite
     if(fileExists(filename))
     {
@@ -308,7 +289,6 @@ void writeJSON(char* filename)
         scanf("%s", response);
         while((strcmp(response, "no") != 0) && (strcmp(response, "yes") != 0)){
             printf("%s", "\nInvalid response, try again: ");
-            scanf("%s", response);
         }
         if(strcmp(response, "no") == 0)
         {
@@ -371,11 +351,10 @@ void writeJSONBody(LetterNode *curr, char *wordBuffer, FILE *json)
     {
         if(curr->children[i]){
             writeJSONBody(curr->children[i], wordBuffer, json);
-            //removeChar(wordBuffer);
+            removeChar(wordBuffer);
         }
     }
 
-    free(wordBuffer);
     //removeChar(wordBuffer);
 
     return;
@@ -388,12 +367,10 @@ char *appendChar(char *dest, char src)
 {
     if(dest) // string not null
     {
-        char *tmp = dest;
-        int len = (int) strlen(dest);
-        dest = (char*) malloc(sizeof(char) * (len + 2));
-        strcpy(dest, tmp);
-        dest[len + 1] = '\0';
-        dest[len] = src;
+        int prevStrlen = (int) strlen(dest);
+        dest = (char*) realloc(dest, (prevStrlen + 2) * sizeof(char));
+        dest[prevStrlen + 1] = '\0';
+        dest[prevStrlen] = src;
     }
     else // null string
     {
@@ -414,7 +391,13 @@ char *removeChar(char *str)
         return NULL;
     }
 
-    str[strlen(str) - 1] = '\0';
+    str[(int) strlen(str) - 1] = '\0';
+
+    /*char *newStr = (char*) calloc(strlen(str), sizeof(char));
+    strncpy(newStr, str, strlen(str) - 1);*/
+
+
+    printf("new string: %s\n", str);
 
     return str;
 }
@@ -515,13 +498,6 @@ int isValidToken(char *token)
 /* Trarverses the directory, and adds all words in all files to trie */
 void traverse(char *dirName)
 {
-    struct stat path_stat;
-    stat(dirName, &path_stat);
-    if(S_ISREG(path_stat.st_mode)){
-        addToTrie(dirName);
-        return;
-    }
-
     DIR *dir;
     if((dir = opendir(dirName)) == NULL)
     {

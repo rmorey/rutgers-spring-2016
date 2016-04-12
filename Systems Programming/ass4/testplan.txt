@@ -1,0 +1,28 @@
+Jordan Lyon & Olaolu Emmanuel - Indexer testplan
+
+We tested scalability and how well we could index subdirectories
+so we had a large directory with many files and subfolders.
+
+Also accounts for if file exists, or does not exist.
+
+Test 1:
+------------------------------------
+testdir/two.txt
+testdir/sub1
+testdir/sub1/three.txt
+testdir/sub1/subsub1
+testdir/sub1/subsub1/five.txt
+testdir/sub2
+testdir/sub2/four.txt
+testdir/sub2/subsub2
+testdir/sub2/subsub2/six.txt
+testdir/one.txt
+
+Test 2:
+------------------------------------
+smally/small.txt
+smally/hi.txt
+
+Test 3:
+------------------------------------
+onefile.txt

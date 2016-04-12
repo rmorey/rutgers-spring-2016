@@ -1,5 +1,5 @@
-all:
-	gcc -g -Wall -o indexer indexer.c
+all: indexer.c
+	gcc -o index indexer.c
 
 clean:
-	rm indexer 
+	rm -f index indexer.o 
