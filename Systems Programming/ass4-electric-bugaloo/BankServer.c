@@ -9,7 +9,7 @@
 
 #include "Bank.h"
 
-// temp
+/* temp
 #define KEY 666 // key used to access bank in shared mem
 #define MAXACCOUNTS 20 // max # of accounts in bank
 // Name for bank Semaphore
@@ -29,7 +29,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/prctl.h>
-// end temp
+#include <linux/limits.h>
+// end temp*/
 
 void endMethod(int signal);
 void suicide(int signal);
@@ -38,6 +39,8 @@ void openAccount(int clientSocket, char *commandArg, int *in_session);
 void startAccount(int clientSocket, char *commandArg, int *in_session);
 void finishSession(int clientSocket, int *in_session);
 void getBalance(int clientSocket, int *in_session);
+void debitAccount(int clientSocket, char *commandArg, int *in_session);
+void creditAccount(int clientSocket, char *commandArg, int *in_session);
 
 int spawnedProcesses;
 int printBankPID; // pid of bank printing process
@@ -52,7 +55,7 @@ int main(int argc, char *argv[])
 
     spawnedProcesses = 0;
 
-    signal(SIGINT, endMethod); // set function to run at program termination;
+    signal(SIGINT, endMethod); // set function to run at program termination
 
     /* Init bank and put into shared memory */
 
@@ -71,21 +74,28 @@ int main(int argc, char *argv[])
     {
         bzero((void*) semaphoreName, 100); // zero out buffer
         sprintf(semaphoreName, "%d", i); // create name for lock
+        sem_unlink(semaphoreName); // in case it already exists
         sem_open(semaphoreName, O_CREAT, 0644, 1); // create account lock
     }
+    sem_unlink(BANKLOCK); // in case it already exists
     sem_open(BANKLOCK, O_CREAT, 0644, 1); // create bank lock
 
     /* Spawn process to print bank contents on an interval*/
 
     char *args[] = {"PrintBank", 0}; // args to be passed to child process
     char *env[] = { 0 }; // environment to be passed to child process
+
+    // get path name
+    char filePath[PATH_MAX];
+    realpath("PrintBank", filePath);
+
+    spawnedProcesses++;
     pid_t pid = fork();
     printBankPID = pid;
-    spawnedProcesses++;
     if(pid == 0) // this is child process
     {
         execve(
-            "/home/biggie/school/rutgers-spring-2016/Systems Programming/ass4-electric-bugaloo/PrintBank",
+            filePath,
             args, env);
         perror("Failure to run PrintBank.c");
         exit(EXIT_FAILURE);
@@ -169,7 +179,7 @@ void clientHandler(int clientSocket)
         exit(EXIT_FAILURE);
     }
 
-    int in_session = 0;
+    int in_session = -1;
 
     // create buffer for socket messages
     char buffer[256];
@@ -232,10 +242,13 @@ void openAccount(int clientSocket, char *commandArg, int *in_session)
     int exists = 0;
     for(i = 0; i < MAXACCOUNTS; i++)
     {
-        if(bank->accounts[i].name){ // taken
+        if(*bank->accounts[i].name){ // taken
             // check if desired account to open already exists
             exists = (exists == 0) ? (strcmp(bank->accounts[i].name, commandArg) == 0) : 1;
             continue;
+        }
+        else{
+            break;
         }
     }
 
@@ -328,6 +341,61 @@ void getBalance(int clientSocket, int *in_session)
     write(clientSocket, response, strlen(response));
 
     sem_post(accountLock);
+
+    return;
+}
+
+void debitAccount(int clientSocket, char *commandArg, int *in_session)
+{
+    if(*in_session < 0){
+        write(clientSocket, "Can't credit account, not in session", 36);
+        return;
+    }
+
+    // get lock for account
+    char lockName[100];
+    bzero((void*) lockName, 100);
+    sprintf(lockName, "%d", *in_session);
+    sem_t *accountLock = sem_open(lockName, 0);
+    sem_wait(accountLock);
+
+    // check for sufficient funds
+    float debitAmount = atof(commandArg);
+    if(bank->accounts[*in_session].balance < debitAmount) // insufficient
+    {
+        write(clientSocket, "Can't debit account, insufficient funds.", 40);
+    }
+    else // sufficient
+    {
+        bank->accounts[*in_session].balance -= debitAmount;
+        write(clientSocket, "Debit successful!", 17);
+    }
+
+    sem_post(accountLock);
+
+    return;
+}
+
+void creditAccount(int clientSocket, char *commandArg, int *in_session)
+{
+    if(*in_session < 0){
+        write(clientSocket, "Can't credit account, not in session", 36);
+        return;
+    }
+
+    // get lock for account
+    char lockName[100];
+    bzero((void*) lockName, 100);
+    sprintf(lockName, "%d", *in_session);
+    sem_t *accountLock = sem_open(lockName, 0);
+    sem_wait(accountLock);
+
+    // credit account
+    bank->accounts[*in_session].balance += atof(commandArg);
+
+    sem_post(accountLock);
+
+    return;
 }
 
 void endMethod(int signal)
@@ -345,8 +413,6 @@ void endMethod(int signal)
             // should do somthing along these lines
         }
     }
-
-    printf("%s", "Waited properly");
 
     exit(EXIT_SUCCESS);
 }

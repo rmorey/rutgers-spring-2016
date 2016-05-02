@@ -6,6 +6,9 @@
  *Authors: Biggie and Jordano
 ***************************************************************/
 
+#ifndef Bank_h
+#define Bank_h
+
 #define KEY 666 // key used to access bank in shared mem
 #define MAXACCOUNTS 20 // max # of accounts in bank
 
@@ -27,6 +30,12 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/prctl.h>
+#include <linux/limits.h>
+#include<netdb.h>
+#include<errno.h>
+#include<arpa/inet.h>
+#include<regex.h>
+#include<pthread.h>
 
 /******** Declarations ******************/
 /***************************************/
@@ -66,3 +75,5 @@ void createBank(Bank *b)
 
     return;
 }
+
+#endif

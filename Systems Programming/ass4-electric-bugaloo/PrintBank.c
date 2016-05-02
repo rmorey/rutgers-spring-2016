@@ -8,7 +8,7 @@
 
 #include "Bank.h"
 
-#define INTERVAL 2 // interval, in seconds, on which bank contents are printed
+#define INTERVAL 20 // interval, in seconds, on which bank contents are printed
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
             bzero((void*) lockName, 100); // clear buffer
             sprintf(lockName, "%d", i);
             sem_t *accountLock = sem_open(lockName, 0);
+            printf("%s\n", "HA");
             sem_wait(accountLock); // lock account
 
             printf("Bank #%d:\tbalance: %f\t%s\tname: %s\n",
