@@ -1,0 +1,17 @@
+﻿Test plan
+
+Test: debit 30.00	
+Expected Output: Debit successful Your balance is “ ”
+
+Test:    open account X
+	open account X
+Expected Output: account exists
+
+Test:	debit 30.00 (over-draft) 	
+Expected Output: cannot debit – insufficient funds
+
+Test: credit 50.00
+Expected Output: account credited
+
+Test: finish
+Expected Output: end client connection

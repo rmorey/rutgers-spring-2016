@@ -1,0 +1,26 @@
+﻿Testcases
+Jordan Lyon & Olaolu Emmanuel - Bank server
+
+debit account for more than available balance
+output: "Can't debit account, insufficient funds"
+--------------------------------------------------
+
+Start session w/ account X
+attempt to make 2nd account X
+output: “waiting to connect” - 2nd user waits until 1st user disconnects – waiting to connect sent every 2 seconds as expected in extra credit.
+--------------------------------------------------
+
+Attempt to credit account not in session
+output: "cannot credit account, not in session"
+--------------------------------------------------
+
+create account X
+credit 30.00
+output: "Account created"
+"account credited"
+--------------------------------------------------
+
+
+
+
+

@@ -1,5 +1,5 @@
 # Start Bank
-all: BankServer PrintBank
+all: BankServer PrintBank BankClient
 
 PrintBank: PrintBank.c
 	gcc -g -Wall -o PrintBank PrintBank.c -pthread
@@ -7,8 +7,11 @@ PrintBank: PrintBank.c
 BankServer: BankServer.c
 	gcc -g -Wall -o BankServer BankServer.c -pthread
 
+BankClient: BankClient.c
+	gcc -g -Wall -o BankClient BankClient.c -pthread
+
 clean:
-	rm -f BankServer PrintBank *.o
+	rm -f BankServer PrintBank BankClient *.o
 # End Bank
 
 # Start Test

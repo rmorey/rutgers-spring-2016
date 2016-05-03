@@ -2,58 +2,28 @@
 #include "Bank.h"
 
 struct threadInfo {
-    int port;
-    struct hostent *hostServerIP;
     int fd;
 };
 
+/* thread to print server responses */
 void *threadFunc(void *arg)
 {
-    struct threadInfo* data;
-    int port = 0;
-    int sockfd = -1;
-    struct hostent *hostIP;
-    int n = -1;
+    int sockfd = ((struct threadInfo*)arg)->fd; // get socket file descriptor
 
-    data = (struct threadInfo*)arg;
-    port = data->port;
-    hostIP = data->hostServerIP;
-    sockfd = data->fd;
-    //establish new connection to listen for server response
-    //struct sockaddr_in serverAddr;
-    //int sock = -1;
+    listen(sockfd, 10); // listen on socket
+
+    // print responses
     char recBuffer[256];
-
-    /*
-    sock = socket(AF_INET, SOCK_STREAM, 0);
-    if(sock < 0)
+    while(1)
     {
-        error("ERROR creating thread-socket.");
-    }
-    bzero((char*) &serverAddr, sizeof(serverAddr));
-
-    serverAddr.sin_family = AF_INET;
-    serverAddr.sin_port = htons(port);
-    bcopy((char *)hostIP->h_addr, (char *)&serverAddr.sin_addr.s_addr, hostIP->h_length);
-
-    if(connect(sock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
-    {
-        error("ERROR connecting thread to server");
-    }
-    */
-
-    //THREAD CONNECTED....
-    listen(sockfd, 5);
-
-    bzero(recBuffer, 256);
-    n = read(sockfd, recBuffer, 255);
-
-    printf("Server Response: %s\n", recBuffer);
-
-    if(n < 0)
-    {
-        //error("ERROR reading from socket in thread");
-        exit(EXIT_FAILURE);
+        bzero(recBuffer, 256);
+        if((read(sockfd, recBuffer, 255)) > 0) // successful read
+        {
+            printf("\nServer Response: %s\n", recBuffer);
+        }
+        else{
+            exit(EXIT_SUCCESS);
+        }
     }
 
     return 0;
@@ -61,10 +31,6 @@ void *threadFunc(void *arg)
 
 int main(int argc, char *argv[])
 {
-    int sockfd = -1;
-    int portnum = -1;
-    int n = -1;
-    char buffer[256];
     struct sockaddr_in serverAddressInfo;
     struct hostent *serverIPAddress;
 
@@ -73,140 +39,121 @@ int main(int argc, char *argv[])
             fprintf(stderr, "usage: <%s> <hostname> <port>\n", argv[0]);
         exit(0);
     }
-    portnum = atoi(argv[2]);
-    serverIPAddress = gethostbyname(argv[1]);
-    if(serverIPAddress == NULL)
+
+    int portnum = atoi(argv[2]); // get port #
+
+    if((serverIPAddress = gethostbyname(argv[1])) == NULL)
     {
         fprintf(stderr, "ERROR, host doesn't exist\n");
         exit(0);
     }
 
-    sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if(sockfd < 0)
+    int sockfd = -1;
+    if((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) // init socket
     {
         //error("ERROR creating socket");
         exit(EXIT_FAILURE);
     }
 
+    // Server setup stuff
     bzero((char *) &serverAddressInfo, sizeof(serverAddressInfo));
     serverAddressInfo.sin_family = AF_INET;
     serverAddressInfo.sin_port = htons(portnum);
     bcopy((char *)serverIPAddress->h_addr, (char *)&serverAddressInfo.sin_addr.s_addr, serverIPAddress->h_length);
 
-    if(connect(sockfd, (struct sockaddr *)&serverAddressInfo, sizeof(serverAddressInfo)) < 0)
+    time_t timeBeforeConnect = time(NULL);
+    while(connect(sockfd, (struct sockaddr *)&serverAddressInfo, sizeof(serverAddressInfo)) < 0)
     {
-        //error("ERROR connecting to server");
-        exit(EXIT_FAILURE);
+        printf("%s\n", "Attempting to connect...\n");
+        sleep(3);
+        if((time(NULL) - timeBeforeConnect) > 20)
+        {
+            printf("%s\n", "More than 20 seconds elapsed while connecting; terminating.\n");
+            exit(EXIT_FAILURE);
+        }
     }
 
     //ITS MULTI-THREAD TIME!
     struct threadInfo* threadargs = (struct threadInfo*)malloc(sizeof(struct threadInfo*));
-    threadargs->port = portnum;
-    threadargs->hostServerIP = serverIPAddress;
     threadargs->fd = sockfd;
 
-    void* threadstatus;
-
+    // start thread, which prints repsonses from server
     pthread_t thread;
-    pthread_t* threadhandle = &thread;
-
     pthread_attr_t threadattr;
     pthread_attr_init(&threadattr);
-
     pthread_attr_setscope(&threadattr, PTHREAD_SCOPE_SYSTEM);
-
     pthread_create(&thread, &threadattr, threadFunc, (void*)threadargs);
-
     pthread_attr_destroy(&threadattr);
 
-
     //CONNECTED....
-    printf("Connected to bank server -- Enter command: ");
-    bzero(buffer, 256); //zero out message buffer
-    fgets(buffer, 255, stdin); //get message from client standard input
-    if(*buffer){
-        buffer[strlen(buffer) - 1] = (buffer[strlen(buffer) -  1] == '\n') ? '\0' : buffer[strlen(buffer) - 1];
-    }
-
-    //Account for valid commands
     regex_t regex;
-    int reti; // returns 0 on proper regex match
-    int valid = 0;
-    regmatch_t matches[1];
+    char buffer[256];
+    while(1)
+    {
+        printf("\nConnected to bank server -- Enter command: \n");
+        bzero(buffer, 256); //zero out message buffer
+        fgets(buffer, 255, stdin); //get message from client standard input
+        if(buffer[0] != '\0'){ // remove '\n' from user input
+            buffer[strlen(buffer) - 1] = (buffer[strlen(buffer) -  1] == '\n') ? '\0' : buffer[strlen(buffer) - 1];
+        }
 
-    if(!valid)
-    {
-        //printf("%s", "in first check");
-        reti = regcomp(&regex, "(credit|debit) [0-9]+[.][0-9][0-9]", REG_EXTENDED);
-        reti = regexec(&regex, buffer, 1, matches, 0);
-        //printf("result: %d", reti);
-        if(!reti)
+        //Account for valid commands
+        int reti; // returns 0 on proper regex match
+        int valid = 0;
+        regmatch_t matches[1];
+        int n = -1;
+
+        if(!valid)
         {
-            //match successful
-            valid = 1;
-            //printf("%s", "nailed it");
+            reti = regcomp(&regex, "(credit|debit) [0-9]+[.][0-9][0-9]", REG_EXTENDED);
+            reti = regexec(&regex, buffer, 1, matches, 0);
+            if(!reti)
+            {
+                valid = 1;
+            }
         }
-    }
-    if(!valid)
-    {
-        //printf("%s", "in 2nd check");
-        reti = regcomp(&regex, "(open|start) [a-z]{1,100}", REG_EXTENDED);
-        reti = regexec(&regex, buffer, 1, matches, 0);
-        //printf("result: %d", reti);
-        if(!reti)
+        if(!valid)
         {
-            //2nd regex match successful
-            valid = 1;
-            //printf("%s", "nailed it bruh");
+            reti = regcomp(&regex, "(open|start) [a-z]{1,100}", REG_EXTENDED);
+            reti = regexec(&regex, buffer, 1, matches, 0);
+            if(!reti)
+            {
+                valid = 1;
+            }
         }
-    }
-    if(valid)
-    {
-        //printf("%s", "hi");
-        if(matches[0].rm_eo == strlen(buffer))
+        if(valid)
         {
-            //printf(matches[0]);
-            n = write(sockfd, buffer, strlen(buffer));
-            //printf("%s", "wrote to socket dood!");
+            if(matches[0].rm_eo == (int) strlen(buffer))
+            {
+                n = write(sockfd, buffer, strlen(buffer));
+            }
         }
-        printf("eo: %d, len: %d, word: |%s|", matches[0].rm_eo, strlen(buffer), buffer);
-    }
-    else
-    {
-        //validate simple commands
-        if(strcmp(buffer, "balance") == 0)
+        else
         {
-            n = write(sockfd, buffer, strlen(buffer));
-            //printf("%s", "balance written");
+            //validate simple commands
+            if(strcmp(buffer, "balance") == 0)
+            {
+                n = write(sockfd, buffer, strlen(buffer));
+            }
+            else if(strcmp(buffer, "finish") == 0)
+            {
+                n = write(sockfd, buffer, strlen(buffer));
+            }
+            else if(strcmp(buffer, "exit") == 0)
+            {
+                n = write(sockfd, "finish", 6); // end existing session with bank
+                exit(0); // terminate client
+            }
         }
-        else if(strcmp(buffer, "finish") == 0)
-        {
-            n = write(sockfd, buffer, strlen(buffer));
-            //printf("%s", "finish written");
+
+        if(n < 0){
+            printf("\n%s\n", "Invalid command");
         }
-        else if(strcmp(buffer, "exit") == 0)
-        {
-            n = write(sockfd, "finish", 6); // end existing session with bank
-            exit(0); // terminate client
-        }
+
+        sleep(2);
     }
 
-    if(n < 0)
-    {
-        //error("ERROR could not write to socket");
-        exit(EXIT_FAILURE);
-    }
-
-    bzero(buffer, 256);
-
-    n = read(sockfd, buffer, 255);
-
-    if(n < 0)
-    {
-        //error("ERROR could not read from socket");
-        exit(EXIT_FAILURE);
-    }
-    //printf("%s\n", buffer);
     regfree(&regex);
+
     return 0;
 }
