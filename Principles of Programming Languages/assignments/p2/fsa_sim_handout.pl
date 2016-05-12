@@ -90,7 +90,8 @@ run([State1 | States], Chars):- accepts(State1,[State1 | States], Chars).
 %
 
 % demo1 and demo2 are here to show you how to call your code.  They
-% are NOT intended to provide sufficient test data for your code
+%d
+%are NOT intended to provide sufficient test data for your code
 
 % demo1 shows a deterministic finite state automaton.
 % demo1([ ]) should return true, as should demo1([1,1]), demo1([0,1,1]),
