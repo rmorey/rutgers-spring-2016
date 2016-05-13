@@ -67,7 +67,6 @@ TokenizerT *TKCreate( char * ts )
 {
     TokenizerT* tk = (TokenizerT*) malloc(sizeof(TokenizerT));
 
-    // set place
     tk->place = 0;
 
     // copy input stream into struct
@@ -98,7 +97,6 @@ int TKGetNextToken( TokenizerT * tk )
 { 
     state s;
 
-    // set initial state of finite state machine
     s = START;
     
     // Characters are put through the FSM

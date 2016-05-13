@@ -132,6 +132,16 @@ void* myrealloc(void *ptr, size_t numBytes,
         return NULL;
     }
 
+    /* TODO:
+     * The amount copied by memcpy() should be the smaller value
+     * between the number bytes in the users previous memory block
+     * and the number of bytes they would like to realloc() for.
+     *
+     * This should be done to handle the case where a user wants
+     * to realloc() for a smaller block of memory and thus copying over
+     * all data from the previous block would result in undefined
+     * behavior (most likely a segmentation fault).
+     */
     memcpy(block, ptr, findEntry(ptr)->numBytes); // copy old data
     free(ptr);
 
