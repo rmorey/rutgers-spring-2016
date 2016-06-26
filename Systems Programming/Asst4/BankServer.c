@@ -389,6 +389,5 @@ void endMethod(int signal)
 
 void suicide(int signal)
 {
-    printf("%s", "goodbye cruel world.");
     exit(EXIT_SUCCESS);
 }
